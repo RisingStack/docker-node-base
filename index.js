@@ -10,7 +10,6 @@ const dockerTemplates = read('.').filter(function (filePath) {
 
 dockerTemplates.forEach((templatePath) => {
   const dir = path.resolve(templatePath, '../')
-  console.log(dir)
   const versions = require(`${dir}/versions`)
   const source = fs.readFileSync(`${dir}/Dockerfile.hbs`, 'utf-8')
   const template = Handlebars.compile(source)
