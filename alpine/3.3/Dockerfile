@@ -4,6 +4,7 @@ MAINTAINER Gergely Nemeth <gergely@risingstack.com>
 
 RUN apk add --update \
 	binutils-gold \
+	ca-certificates \
 	curl \
 	git \
 	gcc \
@@ -14,3 +15,5 @@ RUN apk add --update \
 	make \
 	paxctl \
 	python
+
+RUN update-ca-certificates
