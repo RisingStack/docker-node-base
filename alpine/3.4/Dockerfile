@@ -1,4 +1,4 @@
-FROM alpine:{{version}}
+FROM alpine:3.4
 
 MAINTAINER Gergely Nemeth <gergely@risingstack.com>
 
