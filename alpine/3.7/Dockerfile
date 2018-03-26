@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-MAINTAINER Gergely Nemeth <gergely@risingstack.com>
+LABEL maintainer="Tamas Kadlecsik <tamas.kadlecsik@risingstack.com>"
 
 RUN apk add --update \
 	binutils-gold \
