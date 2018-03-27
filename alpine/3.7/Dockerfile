@@ -1,4 +1,4 @@
-FROM alpine:{{version}}
+FROM alpine:3.7
 
 LABEL maintainer="Tamas Kadlecsik <tamas.kadlecsik@risingstack.com>"
 
