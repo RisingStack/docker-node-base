@@ -20,9 +20,9 @@ jobs:
       - deploy:
           name: Push Docker image
           command: |
-            set -eoux pipefail
+            set -eou pipefail
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
               version=$(jq -r ".version" package.json)
               cd alpine/3.7 
               docker push risingstack/alpine-base:3.7-$version
