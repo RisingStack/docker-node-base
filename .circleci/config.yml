@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:17
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: 
+          name: Install dependencies
+          command: apk --update add jq
+      - run:
+          name: Build Docker image
+          command: |
+            set -eoux pipefail
+            version=$(jq -r ".version" package.json)
+            cd alpine/3.7
+            docker build -t risingstack/alpine-base:3.7-$version .
+      - deploy:
+          name: Push Docker image
+          command: |
+            set -eoux pipefail
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              version=$(jq -r ".version" package.json)
+              cd alpine/3.7 
+              docker push risingstack/alpine-base:3.7-$version
+            fi
